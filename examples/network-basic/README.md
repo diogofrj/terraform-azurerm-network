@@ -62,6 +62,13 @@ module "vnet" {
   }
 }
 ```
+```hcl
+# outputs.tf
+output "vnet_id" {
+  description = "ID da VNet"
+  value       = module.vnet.vnet_id
+}
+```
 
 <h2 align="left">Contatos:</h2>
 <p align="left">
