@@ -2,7 +2,7 @@
 <!-- Título do Módulo -->
 # 🌐 Terraform AzureRM - Virtual Network
 
-![Banner Sinqia](./docs/images/Module-banner.png)
+![Banner](./docs/images/Module-banner.png)
 
 # Como utilizar este módulo
 
