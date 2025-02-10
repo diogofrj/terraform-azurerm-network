@@ -11,6 +11,8 @@ ARM_TENANT_ID		?= $(shell grep ARM_TENANT_ID .env | cut -d '=' -f2)
 TF_PLAN_FILE        = tf.plan
 VAR_FILE            = terraform.tfvars
 
+CHDIR = -chdir=examples/network-basic
+
 .PHONY: help
 help:
 	@echo "Comandos disponíveis:"
@@ -45,26 +47,26 @@ login:
 init:
 	@echo ""
 	@echo "Terraform init"
-	@terraform init -upgrade
+	@terraform $(CHDIR) init -upgrade
 
 validate:
 	@echo ""
 	@echo "Terraform validate"
-	@terraform validate
+	@terraform $(CHDIR) validate
 
 plan: validate init
 	@echo ""
 	@echo "Terraform Plan"
-	@terraform plan -out=$(TF_PLAN_FILE) -var-file=$(VAR_FILE)
+	@terraform $(CHDIR) plan -out=$(TF_PLAN_FILE) -var-file=$(VAR_FILE)
 
 apply: plan
 	@echo ""
-	@terraform apply -var-file=$(VAR_FILE) $(TF_PLAN_FILE)
+	@terraform $(CHDIR) apply -var-file=$(VAR_FILE) $(TF_PLAN_FILE)
 
 destroy: validate init
 	@echo ""
 	@echo "Terraform Destroy"
-	@terraform destroy -auto-approve -var-file=$(VAR_FILE)
+	@terraform $(CHDIR) destroy -auto-approve -var-file=$(VAR_FILE)
 
 all: apply
 
@@ -92,4 +94,3 @@ clean:
 	@echo "Limpando cache do Terraform"
 	@find . -type d -name '.terraform'  -prune -exec rm -rf {} \;
 	@find . -type f -name '.terraform.lock.hcl' -exec rm -f {} \;
-

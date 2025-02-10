@@ -5,7 +5,7 @@ Bem-vindo ao **Platform Engineer Toolbox for Ubuntu/Mint**, um script que automa
 ## 📖 Índice
 
 - [Introdução](#-introdução)
-- [Ferramentas Instaladas](#-ferramentas-instaladas) 
+- [Ferramentas Instaladas](#-ferramentas-instaladas)
 - [Pré-requisitos](#-pré-requisitos)
 - [Instalação](#-instalação)
 - [Uso](#-uso)
@@ -201,7 +201,7 @@ Execute o script de instalação manualmente:
     ```bash
     vagrant destroy
     ```
-    
+
 ## 🤝 Contribuindo
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias, novos recursos ou correções de bugs.

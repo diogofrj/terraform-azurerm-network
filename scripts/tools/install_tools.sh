@@ -43,7 +43,7 @@ echo " 30 - Azure CLI (Azure Command Line Interface) ☁️"
 echo " 31 - Azure Developer CLI (Azure Developer CLI) 🔧"
 echo " 32 - Azure Quick Review (Azure Quick Review) 🔍"
 echo " 33 - AzCopy (Azure Storage CLI) 📡"
-echo " 34 - AWS CLI (Amazon Web Services Command Line Interface) ☁️" 
+echo " 34 - AWS CLI (Amazon Web Services Command Line Interface) ☁️"
 echo " 35 - Google Cloud SDK (Google Cloud SDK) ☁️"
 echo ""
 echo -e "${YELLOW}Kubernetes Tools:${NC}"
@@ -127,23 +127,23 @@ install_all_prerequisites() {
 # 2 - Funções de instalação das ferramentas HashiCorp
 install_consul() {
     echo -e "${GREEN}Instalando HashiCorp Consul...${NC}"
-    
+
     # Obtém a última versão do Consul através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/consul/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Consul${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Consul versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/consul/${LATEST_VERSION}/consul_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Consul. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "consul_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "consul_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "consul_${LATEST_VERSION}_linux_amd64.zip"
@@ -158,23 +158,23 @@ install_consul() {
 
 install_packer() {
     echo -e "${GREEN}Instalando HashiCorp Packer...${NC}"
-    
+
     # Obtém a última versão do Packer através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/packer/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Consul${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Packer versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/packer/${LATEST_VERSION}/packer_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Packer. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "packer_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "packer_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "packer_${LATEST_VERSION}_linux_amd64.zip"
@@ -189,23 +189,23 @@ install_packer() {
 
 install_vault() {
     echo -e "${GREEN}Instalando HashiCorp Vault...${NC}"
-    
+
     # Obtém a última versão do Vault através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/vault/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Consul${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Vault versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/vault/${LATEST_VERSION}/vault_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Vault. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "vault_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "vault_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "vault_${LATEST_VERSION}_linux_amd64.zip"
@@ -220,23 +220,23 @@ install_vault() {
 
 install_vagrant() {
     echo -e "${GREEN}Instalando HashiCorp Vagrant...${NC}"
-    
+
     # Obtém a última versão do Vagrant através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/vagrant/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Consul${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Vagrant versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/vagrant/${LATEST_VERSION}/vagrant_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Vagrant. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "vagrant_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "vagrant_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "vagrant_${LATEST_VERSION}_linux_amd64.zip"
@@ -250,23 +250,23 @@ install_vagrant() {
 }
 install_terraform() {
     echo -e "${GREEN}Instalando HashiCorp Terraform...${NC}"
-    
+
     # Obtém a última versão do Terraform através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Consul${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Terraform versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/terraform/${LATEST_VERSION}/terraform_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Terraform. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "terraform_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "terraform_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "terraform_${LATEST_VERSION}_linux_amd64.zip"
@@ -280,23 +280,23 @@ install_terraform() {
 }
 install_nomad() {
     echo -e "${GREEN}Instalando HashiCorp Nomad...${NC}"
-    
+
     # Obtém a última versão do Nomad através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/nomad/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Nomad${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Nomad versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/nomad/${LATEST_VERSION}/nomad_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Nomad. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "nomad_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "nomad_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "nomad_${LATEST_VERSION}_linux_amd64.zip"
@@ -311,23 +311,23 @@ install_nomad() {
 
 install_boundary() {
     echo -e "${GREEN}Instalando HashiCorp Boundary...${NC}"
-    
+
     # Obtém a última versão do Boundary através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/hashicorp/boundary/releases/latest | jq -r .tag_name | sed 's/v//')
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Boundary${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Boundary versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/boundary/${LATEST_VERSION}/boundary_${LATEST_VERSION}_linux_amd64.zip"; then
         echo -e "${RED}Erro ao baixar o Boundary. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "boundary_${LATEST_VERSION}_linux_amd64.zip" ] && [ -s "boundary_${LATEST_VERSION}_linux_amd64.zip" ]; then
         unzip "boundary_${LATEST_VERSION}_linux_amd64.zip"
@@ -342,18 +342,18 @@ install_boundary() {
 
 install_boundary_desktop() {
     echo -e "${GREEN}Instalando HashiCorp Boundary Desktop...${NC}"
-    
+
     # Versão fixa do Boundary Desktop
     BOUNDARY_VERSION="2.2.0"
 
     echo -e "${YELLOW}Baixando Boundary Desktop versão ${BOUNDARY_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://releases.hashicorp.com/boundary-desktop/${BOUNDARY_VERSION}/boundary-desktop_${BOUNDARY_VERSION}_amd64.deb"; then
         echo -e "${RED}Erro ao baixar o Boundary Desktop. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "boundary-desktop_${BOUNDARY_VERSION}_amd64.deb" ] && [ -s "boundary-desktop_${BOUNDARY_VERSION}_amd64.deb" ]; then
         sudo dpkg -i "boundary-desktop_${BOUNDARY_VERSION}_amd64.deb"
@@ -384,44 +384,44 @@ install_all_hashicorp() {
 # 3 - Funções de instalação das ferramentas Terraform Tools
 install_checkov() {
     echo -e "${GREEN}Instalando Checkov...${NC}"
-    
+
     # Obtém a última versão do Checkov através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r .tag_name)
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Checkov${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Checkov versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://github.com/bridgecrewio/checkov/releases/download/${LATEST_VERSION}/checkov_linux_X86_64.zip"; then
         echo -e "${RED}Erro ao baixar o Checkov. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Torna o binário executável e move para /usr/local/bin
     unzip "checkov_linux_X86_64.zip"
     sudo mv dist/checkov /usr/local/bin/
     rm -rf dist "checkov_linux_X86_64.zip" LICENSE.txt
-    
+
     echo -e "${GREEN}Checkov ${LATEST_VERSION} instalado com sucesso!${NC}"
 }
 
 install_terraform_docs() {
     echo -e "${GREEN}Instalando Terraform Docs...${NC}"
-    
+
     # Obtém a última versão do Terraform Docs através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | jq -r .tag_name)
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Terraform Docs${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Terraform Docs versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://github.com/terraform-docs/terraform-docs/releases/download/${LATEST_VERSION}/terraform-docs-${LATEST_VERSION}-linux-amd64.tar.gz"; then
         echo -e "${RED}Erro ao baixar o Terraform Docs. Verifique sua conexão com a internet.${NC}"
@@ -432,25 +432,25 @@ install_terraform_docs() {
     tar -xzf "terraform-docs-${LATEST_VERSION}-linux-amd64.tar.gz"
     sudo mv terraform-docs /usr/local/bin/
     rm -rf "terraform-docs-${LATEST_VERSION}-linux-amd64.tar.gz" LICENSE*
-    
+
     echo -e "${GREEN}Terraform Docs ${LATEST_VERSION} instalado com sucesso!${NC}"
 }
 
 install_terragrunt() {
     LATEST_VERSION=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
-    
+
     echo -e "${YELLOW}Baixando Terragrunt versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download do binário
     sudo curl -L -o /usr/local/bin/terragrunt \
         "https://github.com/gruntwork-io/terragrunt/releases/download/v${LATEST_VERSION}/terragrunt_linux_amd64"
-    
+
     # Adiciona permissão de execução
     sudo chmod +x /usr/local/bin/terragrunt
-    
+
     # Configura o auto-complete
     terragrunt --install-autocomplete
-    
+
     # Verifica a instalação
     INSTALLED_VERSION=$(terragrunt --version)
     echo -e "${GREEN}✅ Terragrunt ${INSTALLED_VERSION} instalado com sucesso!${NC}"
@@ -466,7 +466,7 @@ install_terramaid () {
 
 install_tfswitch() {
     echo -e "${GREEN}Instalando Terraform Switcher...${NC}"
-    
+
     # Remove o link simbólico existente do Terraform, se houver
     if [ -L "/usr/local/bin/terraform" ]; then
         sudo unlink /usr/local/bin/terraform
@@ -476,20 +476,20 @@ install_tfswitch() {
 
     # Obtém a última versão do Terraform através da API do GitHub
     LATEST_VERSION=$(curl -s https://api.github.com/repos/warrensbox/terraform-switcher/releases/latest | jq -r .tag_name)
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do Terraform Switcher${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando Terraform Switcher versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://github.com/warrensbox/terraform-switcher/releases/download/${LATEST_VERSION}/terraform-switcher_${LATEST_VERSION}_linux_amd64.tar.gz"; then
         echo -e "${RED}Erro ao baixar o Terraform Switcher. Verifique sua conexão com a internet.${NC}"
         return 1
     fi
-    
+
     # Verifica se o arquivo existe e tem tamanho maior que zero
     if [ -f "terraform-switcher_${LATEST_VERSION}_linux_amd64.tar.gz" ] && [ -s "terraform-switcher_${LATEST_VERSION}_linux_amd64.tar.gz" ]; then
         tar -xzf "terraform-switcher_${LATEST_VERSION}_linux_amd64.tar.gz"
@@ -517,7 +517,7 @@ install_tfswitch() {
     #     echo -e "${YELLOW}Shell não identificado. Adicione manualmente ao seu arquivo de configuração:${NC}"
     #     echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
     # fi
-    
+
 }
 
 install_infracost() {
@@ -605,23 +605,23 @@ install_kubectl() {
         elif [ -n "$BASH_VERSION" ]; then
             echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >>~/.bashrc
         fi
-        
+
         echo -e "${GREEN}Krew instalado com sucesso!${NC}"
 
         # Pergunta se deseja instalar plugins do krew
         read -p "Deseja instalar plugins node-shell e neat no kubectl? (s/n): " install_plugins
-        
+
         if [ "$install_plugins" = "s" ] || [ "$install_plugins" = "S" ]; then
             echo "Instalando plugins do krew..."
             kubectl krew index add kvaps https://github.com/kvaps/krew-index
-            kubectl krew install kvaps/node-shell neat 
+            kubectl krew install kvaps/node-shell neat
             echo -e "${GREEN}Plugins do krew instalados com sucesso!${NC}"
             echo -e "${YELLOW}Para usar o node-shell, execute: kubectl node-shell <node-name>${NC}"
         else
             echo "Instalação de plugins do krew ignorada."
             echo -e "${YELLOW}Para usar o node-shell, execute: kubectl node-shell <node-name>${NC}"
         fi
-    
+
 
 }
 # Function to install Kustomize
@@ -642,7 +642,7 @@ install_k3s() {
         echo "3 - Docker Desktop com Kubernetes"
         echo -e "${YELLOW}Deseja continuar com a instalação do K3s mesmo assim? (s/n)${NC}"
         read -p "Resposta: " continue_install
-        
+
         if [ "$continue_install" != "s" ] && [ "$continue_install" != "S" ]; then
             echo -e "${YELLOW}Instalação do K3s cancelada.${NC}"
             return 1
@@ -652,14 +652,14 @@ install_k3s() {
     echo -e "${YELLOW}Instalando K3s...${NC}"
     # Instala K3s com permissões adequadas para o kubeconfig
     curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--write-kubeconfig-mode 644" sh -
-    
+
     # Verifica se a instalação foi bem sucedida
     if [ $? -eq 0 ]; then
         # Configura o ambiente para o usuário atual
         mkdir -p $HOME/.kube
         sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
         sudo chown $(id -u):$(id -g) $HOME/.kube/config
-        
+
         # Adiciona o KUBECONFIG ao perfil do usuário
         if [ -f "$HOME/.bashrc" ]; then
             echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.bashrc
@@ -667,7 +667,7 @@ install_k3s() {
         if [ -f "$HOME/.zshrc" ]; then
             echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.zshrc
         fi
-        
+
         echo -e "${GREEN}K3s instalado com sucesso!${NC}"
         echo -e "${YELLOW}Configuração do ambiente:${NC}"
         echo "1. O arquivo kubeconfig foi copiado para $HOME/.kube/config"
@@ -718,7 +718,7 @@ install_kind() {
     echo "Verificando se o KIND está instalado..."
     if ! command -v kind &> /dev/null; then
         echo "Instalando KIND..."
-        
+
         # Detecta a arquitetura do sistema
         ARCH=$(uname -m)
         case $ARCH in
@@ -733,12 +733,12 @@ install_kind() {
                 return 1
                 ;;
         esac
-        
+
         # Baixa a última versão do KIND
         curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.25.0/kind-linux-$ARCH_TAG
         chmod +x ./kind
         sudo mv ./kind /usr/local/bin/kind
-        
+
         # Verifica se a instalação foi bem sucedida
         if ! command -v kind &> /dev/null; then
             echo -e "${RED}Erro ao instalar KIND${NC}"
@@ -884,10 +884,10 @@ install_awx() {
 
 install_docker() {
     echo -e "${GREEN}Instalando Docker...${NC}"
-    
+
     # Remove instalações antigas
     sudo apt autoremove -y
-    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do 
+    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
         sudo apt-get remove -y $pkg
     done
 
@@ -919,7 +919,7 @@ install_docker() {
 
     # Adiciona o usuário atual ao grupo docker
     sudo usermod -aG docker $USER
-    
+
     # Cria o grupo docker se não existir
     if ! getent group docker > /dev/null; then
         sudo groupadd docker
@@ -958,14 +958,14 @@ install_docker() {
     echo -e "${YELLOW}Instalando LazyDocker...${NC}"
     # LazyDocker Variables
     LATEST_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | jq -r .tag_name)
-    
+
     if [ -z "$LATEST_VERSION" ]; then
         echo -e "${RED}Erro ao obter a versão mais recente do LazyDocker${NC}"
         return 1
     fi
 
     echo -e "${YELLOW}Baixando LazyDocker versão ${LATEST_VERSION}...${NC}"
-    
+
     # Download direto da fonte oficial
     if ! curl -LO "https://github.com/jesseduffield/lazydocker/releases/download/${LATEST_VERSION}/lazydocker_${LATEST_VERSION//v/}_Linux_x86_64.tar.gz"; then
         echo -e "${RED}Erro ao baixar o LazyDocker. Verifique sua conexão com a internet.${NC}"
@@ -1020,10 +1020,10 @@ install_gh() {
 install_pre_commit_hooks() {
     # Instala python3-pip e python3-venv como pré-requisitos
     sudo apt install python3-pip python3-venv pipx -y
-   
+
     # Instala pre-commit usando pipx
     pipx install pre-commit --force
-    
+
     echo -e "${GREEN}Pre-commit instalado com sucesso!${NC}"
 }
 
@@ -1043,20 +1043,20 @@ install_jenkins() {
     echo -e "${YELLOW}Instalando Java JDK...${NC}"
     sudo apt update
     sudo apt install fontconfig openjdk-17-jre -y
-    
+
     echo -e "${YELLOW}Instalando Jenkins...${NC}"
     sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
     echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
     sudo apt-get update
     sudo apt-get install jenkins -y
-    
+
     # Aguarda alguns segundos para o serviço inicializar
     sleep 5
-    
+
     # Inicia e habilita o serviço
     sudo systemctl start jenkins.service
     sudo systemctl enable jenkins.service
-    
+
     # Verifica o status do serviço
     if sudo systemctl is-active --quiet jenkins; then
         echo -e "${GREEN}Jenkins instalado e iniciado com sucesso!${NC}"
@@ -1092,7 +1092,7 @@ install_postman() {
     sudo tar -xzf postman-linux-x64.tar.gz -C /opt/apps/
     sudo ln -sf /opt/apps/Postman/Postman /usr/local/bin/postman
     curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-    
+
     # Criar atalho no desktop
     cat > ~/Desktop/postman.desktop << EOL
 [Desktop Entry]
@@ -1104,10 +1104,10 @@ Terminal=false
 Type=Application
 Categories=Development;
 EOL
-    
+
     # Tornar o arquivo executável
     chmod +x ~/Desktop/postman.desktop
-    
+
     echo -e "${GREEN}Postman e Postman CLI instalado com sucesso!${NC}"
     echo -e "${GREEN}Atalho criado no Desktop${NC}"
 }
@@ -1126,19 +1126,19 @@ install_vscodium() {
 install_virtualbox() {
     # Baixa o instalador do VirtualBox
     wget https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4-165100-Linux_amd64.run
-    
+
     # Torna o arquivo executável
     chmod +x VirtualBox-7.1.4-165100-Linux_amd64.run
-    
+
     # Executa o instalador
     sudo ./VirtualBox-7.1.4-165100-Linux_amd64.run
-    
+
     # Remove o instalador após a instalação
     rm VirtualBox-7.1.4-165100-Linux_amd64.run
-    
+
     # Adiciona o usuário atual ao grupo vboxusers
     sudo usermod -aG vboxusers $USER
-    
+
     echo -e "${GREEN}VirtualBox instalado com sucesso!${NC}"
     echo -e "${YELLOW}Você precisa fazer logout e login novamente para que as alterações de grupo tenham efeito.${NC}"
 }
@@ -1202,7 +1202,7 @@ install_ollama() {
         ollama --version
         sudo systemctl start ollama
         sudo systemctl enable ollama
-    echo -e "${YELLOW}Instalando Ollama Modelo DeepSeek R1...${NC}"        
+    echo -e "${YELLOW}Instalando Ollama Modelo DeepSeek R1...${NC}"
         ollama list
         # Ollama Web UI
     echo -e "${YELLOW}Instalando Ollama Web UI...${NC}"
@@ -1257,7 +1257,7 @@ case $tool_choice in
     24) install_tfswitch ;;
     25) install_infracost ;;
     26) install_tflint ;;
-    
+
     # Cloud Tools
     30) install_azurecli ;;
     31) install_azdevcli ;;
@@ -1265,7 +1265,7 @@ case $tool_choice in
     33) install_azcopy ;;
     34) install_awscli ;;
     35) install_gcloud ;;
-    
+
     # Kubernetes Tools
     40) install_kubectl ;;
     41) install_kustomize ;;
@@ -1274,7 +1274,7 @@ case $tool_choice in
     44) install_helm ;;
     45) install_minikube ;;
     46) install_kind ;;
-    
+
     # Other Tools
     50) install_ansible ;;
     51) install_awx ;;
@@ -1291,7 +1291,7 @@ case $tool_choice in
     71) install_postman ;;
     72) install_vscodium ;;
     73) install_virtualbox ;;
-    
+
     # Homelab OS
     81) install_casaos ;;
     82) install_cosmosos ;;

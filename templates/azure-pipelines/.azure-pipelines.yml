@@ -5,7 +5,7 @@ trigger:
 parameters:
   - name: action
     displayName: |
-      🔧 Ação a ser executada no Terraform onde : 
+      🔧 Ação a ser executada no Terraform onde :
       - plan:
          Gera um plano de execução, mostrando quais ações serão tomadas sem fazer nenhuma alteração.
       - apply:
@@ -17,8 +17,8 @@ parameters:
       - run-all:
          Executa as ações de plano e aplicação para todas as configurações.
       - apply-target:
-         Aplica mudanças a um alvo específico dentro da configuração.    
-      > Aviso: A opção "run-all" executará a ação em todos os módulos do projeto e pode comprometer a infra ## - 🏴‍☠️ - MUITO CUIDADO # 
+         Aplica mudanças a um alvo específico dentro da configuração.
+      > Aviso: A opção "run-all" executará a ação em todos os módulos do projeto e pode comprometer a infra ## - 🏴‍☠️ - MUITO CUIDADO #
     default: none
     type: string
     values:
@@ -61,7 +61,7 @@ parameters:
       🛠️ Recurso alvo do projeto Terragrunt ||
       Equivalente ao -c no script de deploy que aponta o recurso:
       app, networking, resource-group, etc.
-      > Aviso: Se a opção de deploy de todos os recursos abaixo for escolhida, 
+      > Aviso: Se a opção de deploy de todos os recursos abaixo for escolhida,
       este parâmetro será ignorado e pode conter qualquer valor.
     type: string
     values:
@@ -102,7 +102,7 @@ variables:
 jobs:
   - job: "TerragruntWorkflow"
     displayName: '🚀 - Fluxo de Trabalho do Terragrunt'
-    
+
 
     steps:
       - bash: |
@@ -142,13 +142,13 @@ jobs:
           echo -e "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile=/dev/null" > ~/.ssh/config
           chmod 600 ~/.ssh/config
         displayName: '🔑 - Instalar Chave SSH'
-   
+
       # - task: InstallSSHKey@0
       #   inputs:
       #     knownHostsEntry: 'dev.azure.com'
       #     sshKeySecureFile: 'id_rsa.pub'
       #     displayName: '🔑 - Instalar Chave SSH'
-      
+
       - script: |
           sudo apt update
           sudo apt install -y git curl wget unzip jq
@@ -177,7 +177,7 @@ jobs:
 
           echo "Terraform e Terragrunt instalados corretamente."
         displayName: '🌎 - Instalar Terraform e Terragrunt'
-        
+
       - bash: |
           az login --service-principal \
           --username $ARM_CLIENT_ID \
@@ -188,8 +188,8 @@ jobs:
         displayName: "\U0001F510 - Login no Azure"
 
       - script: |
-          
-          echo "🚀 - Testando Terragrunt em todo projeto" 
+
+          echo "🚀 - Testando Terragrunt em todo projeto"
           echo "ARM_ACCESS_KEY: $(ARM_ACCESS_KEY)"
           echo "ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)"
           echo "ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)"
@@ -200,32 +200,32 @@ jobs:
 
           cd environments/${{ parameters.environment }}/${{ parameters.geo_location }}
           if [ "${{ parameters.action }}" == "plan" ]; then
-            
+
             echo "📋 - Gerando plano de execução no ambiente ${{ parameters.environment }} e localização ${{ parameters.geo_location }}"
             terragrunt run-all plan --terragrunt-non-interactive --terragrunt-no-color
-          
+
           elif [ "${{ parameters.action }}" == "apply" ]; then
-          
+
             echo "🚀 - Aplicando mudanças no ambiente ${{ parameters.environment }} e localização ${{ parameters.geo_location }}"
             cd environments/"${{ parameters.environment }}"/"${{ parameters.geo_location }}"
             terragrunt run-all apply --terragrunt-non-interactive --terragrunt-no-color
-          
+
           elif [ "${{ parameters.action }}" == "destroy" ]; then
-          
+
             echo "💣 - Destruindo recursos no ambiente ${{ parameters.environment }} e localização ${{ parameters.geo_location }}"
             terragrunt run-all destroy --terragrunt-non-interactive --terragrunt-no-color
-          
+
           elif [ "${{ parameters.action }}" == "run-all" ]; then
-          
+
             echo "🔄 - Executando todas as ações no ambiente"
              scripts/deploy.sh  -e az-csh-dev -s us
-          
+
           else
-          
+
             echo "⚠️ - Nada a deployar, ação definida foi: ${{ parameters.action }}"
             exit 1
-          
-          fi    
+
+          fi
         displayName: '🚀 - Executar Ação do Terragrunt'
 
       # # - script: |
@@ -242,7 +242,7 @@ jobs:
       # #     --terragrunt-include-external-dependencies \
       # #     --terragrunt-non-interactive
       # #   displayName: '✅ - Validar Configuração do Terragrunt'
-       
+
 
       # # - script: |
       # #     terragrunt run-all plan \
@@ -260,7 +260,7 @@ jobs:
       # #       export ARM_CLIENT_ID=$ARM_CLIENT_ID
       # #       export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
       # #       export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
-      # #       export ARM_TENANT_ID=$ARM_TENANT_ID          
+      # #       export ARM_TENANT_ID=$ARM_TENANT_ID
       # #       scripts/deploy.sh  -e "${{ parameters.environment }}" -s "${{ parameters.geo_location }}""
       # #   displayName: '🚀 - Aplicar Mudanças com Terragrunt'
       # #   condition: eq('${{ parameters.action }}', 'apply')
@@ -273,7 +273,7 @@ jobs:
       # #       export ARM_CLIENT_ID=$ARM_CLIENT_ID
       # #       export ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
       # #       export ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
-      # #       export ARM_TENANT_ID=$ARM_TENANT_ID     
+      # #       export ARM_TENANT_ID=$ARM_TENANT_ID
       # #       scripts/deploy.sh  -e "${{ parameters.environment }}" -s ${{ parameters.geo_location }}
       # #   displayName: '🚀 - Aplicar Mudanças com Terragrunt'
       # #   condition: and(eq('${{ parameters.action }}', 'apply') , eq('${{ parameters.deploy_all_resources }}', true))

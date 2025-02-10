@@ -1,1 +1,0 @@
-mover .terraform-docs.yml e a pasta docs para o diretório raiz do projeto Terraform

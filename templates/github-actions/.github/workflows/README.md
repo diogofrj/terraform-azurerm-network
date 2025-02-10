@@ -5,4 +5,3 @@ Criar na raiz do projeto:
 [Documentação de GitHub Actions](https://docs.github.com/en/actions)
 
 [Documentação de Terraform GitHub Actions](https://github.com/hashicorp/setup-terraform)
-
