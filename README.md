@@ -111,7 +111,9 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id) | ID da VNet |
 
 <h2 align="left">Contatos:</h2>
 <p align="left">

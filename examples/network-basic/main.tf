@@ -20,7 +20,4 @@ module "vnet" {
     "environment" = "dev"
     "region"      = "eastus2"
   }
-  # VNet
-
-
 }
