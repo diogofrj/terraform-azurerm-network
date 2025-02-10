@@ -15,11 +15,6 @@ module "vnet" {
   vnet_name             = module.labels.vnet_name
   vnet_address_space    = ["10.1.0.0/16", "192.168.0.0/16"]
 
-
-  #   firewall_subnet_address_prefix = ["10.1.0.0/26"]
-  #   gateway_subnet_address_prefix  = ["10.1.1.0/27"]
-
-
   tags = {
     "project"     = "module-vnet"
     "environment" = "dev"
