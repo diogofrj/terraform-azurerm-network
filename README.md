@@ -122,7 +122,10 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_vnet_address_space"></a> [vnet\_address\_space](#output\_vnet\_address\_space) | Espaço de endereço da VNet |
 | <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id) | ID da VNet |
+| <a name="output_vnet_name"></a> [vnet\_name](#output\_vnet\_name) | Nome da VNet |
+| <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets) | Subnets da VNet |
 
 <h2 align="left">Contatos:</h2>
 <p align="left">
