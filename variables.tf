@@ -1,11 +1,11 @@
 variable "create_resource_group" {
-  description = "Controla se o grupo de recursos deve ser criado (true) ou usar um existente (false)"
+  description = "Indica se um grupo de recursos deve ser criado"
   type        = bool
   default     = true
 }
 
 variable "resource_group_name" {
-  description = "Nome do grupo de recursos"
+  description = "Nome do grupo de recursos onde a VNet será criada"
   type        = string
 }
 
@@ -28,7 +28,6 @@ variable "vnet_name" {
     error_message = "--> Virtual network name must start with letter or number, contain letters, numbers, dashes, undescore and popints and must be between 2 and 64 characters."
   }
 }
-
 variable "subnets" {
   description = "Mapa de configurações de subnets contendo nome, prefixos de endereço e configurações opcionais"
   type = map(object({
@@ -39,6 +38,16 @@ variable "subnets" {
     }))
   }))
   default = {}
+  validation {
+    condition = alltrue(flatten([
+      for subnet in var.subnets : [
+        for prefix in subnet.address_prefixes :
+        can(regex("^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}/[0-9]{1,2}$", prefix)) &&
+        (subnet.name != "AzureBastionSubnet" || tonumber(split("/", prefix)[1]) <= 26)
+      ]
+    ]))
+    error_message = "--> Configuração Invalida. A sub-rede deve ser /26 ou maior (por exemplo, /26, /25 ou /24) para acomodar os recursos disponíveis com o SKU padrão"
+  }
 }
 
 variable "vnet_address_space" {

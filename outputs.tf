@@ -1,20 +1,23 @@
 output "vnet_id" {
-  description = "ID da VNet"
-  value       = azurerm_virtual_network.vnet[0].id
+  value       = try(azurerm_virtual_network.vnet.id, null)
+  description = "ID da VNet criada"
 }
 
 output "vnet_name" {
-  description = "Nome da VNet"
-  value       = azurerm_virtual_network.vnet[0].name
+  value       = try(azurerm_virtual_network.vnet.name, null)
+  description = "Nome da VNet criada"
 }
 
 output "vnet_address_space" {
-  value       = { for vnet in azurerm_virtual_network.vnet : vnet.name => vnet.address_space }
-  description = "Espaço de endereço da VNet"
+  value       = try(azurerm_virtual_network.vnet.address_space, [])
+  description = "Espaço de endereços da VNet"
+}
+output "vnet_subnets" {
+  value       = try([for subnet in azurerm_subnet.subnet : subnet.name], [])
+  description = "Subnets da VNet"
 }
 
-
-output "vnet_subnets" {
-  value       = { for subnet in azurerm_subnet.subnet : subnet.name => subnet.address_prefixes }
-  description = "Subnets da VNet"
+output "vnet_subnets_ids" {
+  value       = { for subnet in azurerm_subnet.subnet : subnet.name => subnet.id }
+  description = "Mapa de IDs das subnets da VNet"
 }

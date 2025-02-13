@@ -37,7 +37,7 @@ terraform {
 ```hcl
 # main.tf
 module "labels" {
-  source       = "git::https://github.com/diogofrj/templates-tf-modules.git//examples/azure/labels?ref=v0.0.1"
+  source       = "git::https://github.com/diogofrj/terraform-template-modules.git//examples/azure/labels?ref=v0.0.1"
   project      = "myapp"
   environment  = "dev"
   region       = "eastus2"
@@ -69,6 +69,10 @@ output "vnet_id" {
   value       = module.vnet.vnet_id
 }
 ```
+### 🚧 TODO
+
+- [ ] Acrescer as subnets reservadas do Azure como Gateways, Firewall, etc.
+- [ ] Acrescer Nat Gateway
 
 ## Índice
 
@@ -84,6 +88,7 @@ output "vnet_id" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9, < 2.0 |
+| <a name="requirement_assert"></a> [assert](#requirement\_assert) | 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.17.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5.1 |
 
@@ -111,10 +116,10 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_location"></a> [location](#input\_location) | Localização do Azure onde os recursos serão criados | `string` | n/a | yes |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Nome do grupo de recursos | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Nome do grupo de recursos onde a VNet será criada | `string` | n/a | yes |
 | <a name="input_vnet_address_space"></a> [vnet\_address\_space](#input\_vnet\_address\_space) | Espaço de endereços da VNet | `list(string)` | n/a | yes |
 | <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | Nome da VNet | `string` | n/a | yes |
-| <a name="input_create_resource_group"></a> [create\_resource\_group](#input\_create\_resource\_group) | Controla se o grupo de recursos deve ser criado (true) ou usar um existente (false) | `bool` | `true` | no |
+| <a name="input_create_resource_group"></a> [create\_resource\_group](#input\_create\_resource\_group) | Indica se um grupo de recursos deve ser criado | `bool` | `true` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | Mapa de configurações de subnets contendo nome, prefixos de endereço e configurações opcionais | <pre>map(object({<br/>    name             = string<br/>    address_prefixes = list(string)<br/>    nat_gateway = optional(object({<br/>      id = string<br/>    }))<br/>  }))</pre> | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags a serem aplicadas aos recursos | `map(string)` | `{}` | no |
 
@@ -122,10 +127,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_vnet_address_space"></a> [vnet\_address\_space](#output\_vnet\_address\_space) | Espaço de endereço da VNet |
-| <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id) | ID da VNet |
-| <a name="output_vnet_name"></a> [vnet\_name](#output\_vnet\_name) | Nome da VNet |
+| <a name="output_vnet_address_space"></a> [vnet\_address\_space](#output\_vnet\_address\_space) | Espaço de endereços da VNet |
+| <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id) | ID da VNet criada |
+| <a name="output_vnet_name"></a> [vnet\_name](#output\_vnet\_name) | Nome da VNet criada |
 | <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets) | Subnets da VNet |
+| <a name="output_vnet_subnets_ids"></a> [vnet\_subnets\_ids](#output\_vnet\_subnets\_ids) | Mapa de IDs das subnets da VNet |
 
 <h2 align="left">Contatos:</h2>
 <p align="left">
