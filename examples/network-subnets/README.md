@@ -53,6 +53,31 @@ module "vnet" {
   vnet_name             = module.labels.vnet_name
   vnet_address_space    = ["10.1.0.0/16", "192.168.0.0/16"]
 
+  subnets = {
+    subnet_1 = {
+      name             = "subnet1"
+      address_prefixes = ["10.1.10.0/24"]
+      # nat_gateway = {
+      #   id = module.natgateway.resource_id
+      # }
+    }
+    subnet_2 = {
+      name             = "subnet2"
+      address_prefixes = ["10.1.0.0/24"]
+      # nat_gateway = {
+      #   id = module.natgateway.resource_id
+      # }
+    }
+    AzureBastionSubnet = {
+      name             = "AzureBastionSubnet"
+      address_prefixes = ["10.1.1.0/26"]
+    }
+    subnet_3 = {
+      name             = "subnet3"
+      address_prefixes = ["10.1.2.0/24"]
+    }
+  }
+
   tags = {
     ProjectName  = "demo-internal"
     Env          = "dev"
@@ -62,6 +87,7 @@ module "vnet" {
   }
 }
 ```
+
 ```hcl
 # outputs.tf
 output "vnet_id" {
