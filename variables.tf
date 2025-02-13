@@ -29,6 +29,18 @@ variable "vnet_name" {
   }
 }
 
+variable "subnets" {
+  description = "Mapa de configurações de subnets contendo nome, prefixos de endereço e configurações opcionais"
+  type = map(object({
+    name             = string
+    address_prefixes = list(string)
+    nat_gateway = optional(object({
+      id = string
+    }))
+  }))
+  default = {}
+}
+
 variable "vnet_address_space" {
   description = "Espaço de endereços da VNet"
   type        = list(string)
